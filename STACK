@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+class S{
+    private:
+    int stk[100],top=-1; 
+    public:
+      bool stackfull()
+        {
+            if(top==99)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    void push(int value)
+    {
+       
+        if(stackfull())
+        {
+            cout<<"over flow ";
+            
+        }
+        else
+        {
+            top++;
+            stk[top]=value;
+        }
+       
+    }
+    bool stackempty()
+    {
+        if(top==-1)
+        {return true;}
+        
+        return false;
+    }
+   int pop()
+   {
+       if(stackempty())
+       {
+           cout<<"underflow"<<endl;
+       }
+       else
+       {return stk[top--];}
+   }
+   void display()
+   {
+       for(int i=0;i<=top;i++)
+       {cout<<stk[i]<<" ";}
+       cout<<endl;
+   }
+};
+int main()
+{
+    S s;
+    cout<<"1 for push"<<endl;
+    cout<<"2 for pop"<<endl;
+    cout<<"3 for display"<<endl;
+    cout<<"4 for exit"<<endl;
+    int ch;
+    do{
+        
+        cin>>ch;
+        switch(ch)
+        {
+            case 1:
+            {s.push(10);
+                break;
+            }
+            case 2:
+            {s.pop();
+                break;
+            }
+            case 3:
+            {s.display();
+                break;
+            }
+            case 4:
+            {
+                cout<<"you are out now"<<endl;
+                break;
+            }
+            default:
+            {cout<<"invalid choice "<<endl;}
+        }
+    }while(ch!=4);
+    return 0;
+}
