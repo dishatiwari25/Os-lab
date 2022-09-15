@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+struct data{
+    int id,bt,wt,tat,arr;
+    
+};
+bool cmp(data x,data y)
+{
+    return (x.bt<y.bt);
+}
+int main()
+{
+    cout<<"Enter the number of proccess "<<endl;
+    int no;
+    cin>>no;
+    data ar[no];
+    cout<<"Enter the arrival time of the preocess"<<endl;
+    for(int i=0;i<no;i++ )
+    {
+        ar[i].id=i;
+       int n;
+       cin>>n;
+        ar[i].arr=n;
+    }
+    cout<<"Enter the burst time of the preocess"<<endl;
+    for(int i=0;i<no;i++ )
+    {
+        cin>>ar[i].bt;
+    }
+    sort(ar,ar+no,cmp);
+    
+           ar[0].wt=0;
+           for(int j=1;j<no;j++)
+           {
+               if(ar[0].arr==0)
+               ar[j].wt=ar[j-1].wt+ar[j-1].bt;
+               else
+               ar[j].wt=ar[j-1].wt+ar[j-1].bt-ar[j].arr;
+           }
+         ar[0].tat=ar[0].bt;
+            
+           for(int j=1;j<no;j++)
+           {
+               if(ar[j].arr==0)
+               ar[j].tat=ar[j-1].tat+ar[j].bt;
+               else
+               ar[j].tat=ar[j-1].tat+ar[j-1].bt-ar[j].arr;
+           }
+         cout<<"pro_id   bt_tm   wt_tm   TAT "<<endl;
+        for(int k=0;k<no;k++)
+        {
+            cout<<ar[k].id<<"        "<<ar[k].bt<<"        "<<ar[k].wt<<"        "<<ar[k].tat<<endl;
+        }
+    return 0;
+}
